@@ -29,11 +29,11 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'reference', // 다른 사용자의 레퍼런스를 참고할거야
-          to: [{type: 'user'}], // 동일하게 유저타입의 레퍼런스를 참고할거야
+          type: 'reference',
+          to: [{type: 'user'}],
         },
       ],
-      validation: (Rule) => Rule.unique(), // 중복을 허용하지 않는 고유한것을 가져올거야
+      validation: (Rule) => Rule.unique(),
     },
     {
       title: 'Followers',
@@ -41,11 +41,11 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'reference', // 다른 사용자의 레퍼런스를 참고할거야
-          to: [{type: 'user'}], // 동일하게 유저타입의 레퍼런스를 참고할거야
+          type: 'reference',
+          to: [{type: 'user'}],
         },
       ],
-      validation: (Rule) => Rule.unique(), // 중복을 허용하지 않는 고유한것을 가져올거야
+      validation: (Rule) => Rule.unique(),
     },
     {
       title: 'Bookmarks',
@@ -53,11 +53,17 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'reference', // 다른 사용자의 레퍼런스를 참고할거야
-          to: [{type: 'post'}], // 동일하게 포스트타입의 레퍼런스를 참고할거야
+          type: 'reference',
+          to: [{type: 'post'}],
         },
       ],
-      validation: (Rule) => Rule.unique(), // 중복을 허용하지 않는 고유한것을 가져올거야
+      validation: (Rule) => Rule.unique(),
     },
   ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'username',
+    },
+  },
 }
