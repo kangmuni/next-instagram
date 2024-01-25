@@ -4,6 +4,7 @@ import { Open_Sans } from 'next/font/google';
 import './globals.css';
 
 import Sidebar from '@/components/Sidebar';
+import AuthContext from '@/context/AuthContext';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
 
@@ -20,12 +21,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={openSans.className}>
       <body className="flex flex-col w-full max-w-screen-2xl mx-auto">
-        <div className="flex h-screen">
-          <Sidebar />
-          <main className="flex flex-col items-center basis-11/12">
-            {children}
-          </main>
-        </div>
+        <AuthContext>
+          <div className="flex h-screen">
+            <Sidebar />
+            <main className="flex flex-col items-center basis-11/12">
+              {children}
+            </main>
+          </div>
+        </AuthContext>
       </body>
     </html>
   );

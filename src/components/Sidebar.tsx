@@ -15,6 +15,7 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function Sidebar() {
   const pathName = usePathname();
+  const { data: session } = useSession();
 
   const icons = [
     {
@@ -52,7 +53,11 @@ export default function Sidebar() {
         </ul>
       </nav>
 
-      <LoginOrLogoutButton onClick={() => {}} />
+      {session ? (
+        <LoginOrLogoutButton onClick={() => signOut()} />
+      ) : (
+        <LoginOrLogoutButton onClick={() => signIn()} />
+      )}
     </div>
   );
 }
