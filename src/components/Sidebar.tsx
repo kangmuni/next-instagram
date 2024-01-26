@@ -12,10 +12,13 @@ import NewFillIcon from './ui/NewFillIcon';
 import LoginOrLogoutButton from './LoginOrLogoutButton';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
+import Avatar from './Avatar';
 
 export default function Sidebar() {
   const pathName = usePathname();
   const { data: session } = useSession();
+
+  const user = session?.user;
 
   const icons = [
     {
@@ -57,6 +60,12 @@ export default function Sidebar() {
         <LoginOrLogoutButton onClick={() => signOut()} />
       ) : (
         <LoginOrLogoutButton onClick={() => signIn()} />
+      )}
+
+      {user && (
+        <Link href={`/user/${user.username}`}>
+          <Avatar image={user?.image} />
+        </Link>
       )}
     </div>
   );
