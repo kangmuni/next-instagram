@@ -24,9 +24,7 @@ export default function RootLayout({
         <AuthContext>
           <div className="flex h-screen">
             <Sidebar />
-            <main className="flex flex-col items-center basis-11/12">
-              {children}
-            </main>
+            <main className="basis-11/12 m-9">{children}</main>
           </div>
         </AuthContext>
       </body>
