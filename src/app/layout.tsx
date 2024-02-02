@@ -5,6 +5,7 @@ import './globals.css';
 
 import Sidebar from '@/components/Sidebar';
 import AuthContext from '@/context/AuthContext';
+import SWRConfigContext from '@/context/SWRConfigContext';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
 
@@ -24,7 +25,10 @@ export default function RootLayout({
         <AuthContext>
           <div className="flex h-screen">
             <Sidebar />
-            <main className="basis-11/12 m-9">{children}</main>
+
+            <main className="basis-11/12 m-9">
+              <SWRConfigContext>{children}</SWRConfigContext>
+            </main>
           </div>
         </AuthContext>
       </body>
