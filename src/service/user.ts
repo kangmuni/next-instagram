@@ -27,3 +27,7 @@ export default function addUser({
     bookmarks: [],
   });
 }
+
+export async function getUserByUsername(username: string) {
+  return client.fetch();
+}
