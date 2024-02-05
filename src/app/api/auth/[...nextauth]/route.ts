@@ -17,19 +17,21 @@ const authOptions: NextAuthOptions = {
       }
       addUser({
         id,
-        name: name || '',
+        name: email.split('@')[0] || '',
         image,
         email,
-        username: email.split('@')[0],
+        username: email.split('@')[0] || '',
       });
       return true;
     },
 
     async session({ session }) {
       const user = session?.user;
+
       if (user) {
         session.user = {
           ...user,
+          name: user.email?.split('@')[0] || '',
           username: user.email?.split('@')[0] || '',
         };
       }

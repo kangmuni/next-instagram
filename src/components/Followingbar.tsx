@@ -1,5 +1,6 @@
 'use client';
 
+import { DetailUser } from '@/model/user';
 import useSWR from 'swr';
 
 export default function Followingbar() {
@@ -14,9 +15,7 @@ export default function Followingbar() {
   // 4. 여기에서(클라이언트 컴포넌트에서) followings의 정보를 UI에 보여줌
   // (image, username)
 
-  const { data, isLoading, error } = useSWR('/api/me');
-
-  console.log(data);
+  const { data, isLoading, error } = useSWR<DetailUser>('/api/me');
 
   return (
     <section>
