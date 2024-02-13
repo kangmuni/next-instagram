@@ -12,7 +12,9 @@ export default function Avatar({
   return (
     <div className={getContainerStyle(size, highlight)}>
       <img
-        className={`bg-white rounded-full ${getImgSizeStyle(size)}`}
+        className={`bg-white object-cover rounded-full ${getImgSizeStyle(
+          size
+        )}`}
         alt="user profile"
         src={image ?? undefined}
         referrerPolicy="no-referrer" // 이 프로퍼티를 사용하면 외부링크 사용시 나타나는 엑박 이슈가 사라짐
@@ -29,10 +31,12 @@ function getContainerStyle(size: string, highlight: boolean): string {
   const sizeStyle =
     size === 'small'
       ? 'w-9 h-9 p-[0.1rem] mt-9'
-      : 'w-[50px] h-[50px] p-[0.15rem]';
+      : 'w-[60px] h-[60px] p-[0.15rem]';
   return `${baseStyle} ${highlightStyle} ${sizeStyle}`;
 }
 
 function getImgSizeStyle(size: string): string {
-  return size === 'small' ? 'w-[34px] h-[34px]' : 'w-15 h-15 p-[0.1rem]';
+  return size === 'small'
+    ? 'w-[34px] h-[34px]'
+    : 'w-[55px] h-[55px] p-[0.1rem]';
 }

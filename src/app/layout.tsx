@@ -25,7 +25,7 @@ export default function RootLayout({
         <AuthContext>
           <div className="flex h-screen">
             <Sidebar />
-            <main className="basis-11/12 m-9">
+            <main className="w-full basis-11/12 m-9">
               <SWRConfigContext>{children}</SWRConfigContext>
             </main>
           </div>

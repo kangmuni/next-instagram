@@ -15,12 +15,12 @@ export default async function HomePage() {
   }
 
   return (
-    <main className="flex flex-col w-full lg:flex-row">
+    <main className="w-full flex flex-col lg:flex-row max-w-[700px]">
       <article className="w-full basis-3/4">
         <Followingbar />
         <PostList />
       </article>
-      <article className="basis-1/4">
+      <article className="basis-1/4 ml-5">
         <MiniProfile user={user} />
       </article>
     </main>

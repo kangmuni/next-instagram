@@ -1,7 +1,12 @@
 'use client';
 
 import { DetailUser } from '@/model/user';
+import Link from 'next/link';
+import { BeatLoader } from 'react-spinners';
+
 import useSWR from 'swr';
+import Avatar from './Avatar';
+import ScrollableBar from './ui/ScrollableBar';
 
 export default function Followingbar() {
   // 클라이언트에서 백엔드에게 사용자의 정보를 보내줘야하나? 그럴필요는 없음!
@@ -16,10 +21,37 @@ export default function Followingbar() {
   // (image, username)
 
   const { data, isLoading, error } = useSWR<DetailUser>('/api/me');
+  //   const users = data?.following;
+  const users = data?.following && [
+    ...data?.following,
+    ...data?.following,
+    ...data?.following,
+    ...data?.following,
+  ];
 
   return (
-    <section>
-      <p>Followingbar</p>
+    <section className="flex justify-center p-4 overflow-x-auto">
+      {isLoading ? (
+        <BeatLoader size={8} color="red" />
+      ) : (
+        (!users || users.length === 0) && <p>{`You don't have followings`}</p>
+      )}
+      {users && users.length > 0 && (
+        <ScrollableBar>
+          {users.map(({ image, username }) => (
+            <Link
+              href={`/user/${username}`}
+              key={username}
+              className="flex flex-col items-center w-20"
+            >
+              <Avatar image={image} highlight={true} />
+              <p className="w-full text-sm text-ellipsis text-center overflow-hidden">
+                {username}
+              </p>
+            </Link>
+          ))}
+        </ScrollableBar>
+      )}
     </section>
   );
 }
