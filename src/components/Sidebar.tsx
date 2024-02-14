@@ -62,11 +62,11 @@ export default function Sidebar() {
         <LoginOrLogoutButton onClick={() => signIn()} />
       )}
 
-      {user && (
+      {/* {user && (
         <Link href={`/user/${user.username}`}>
           <Avatar image={user?.image} size="small" />
         </Link>
-      )}
+      )} */}
     </div>
   );
 }

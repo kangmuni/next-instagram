@@ -29,9 +29,7 @@ function getContainerStyle(size: string, highlight: boolean): string {
     ? 'bg-gradient-to-bl from-fuchsia-600 via-rose-500 to-amber-300'
     : '';
   const sizeStyle =
-    size === 'small'
-      ? 'w-9 h-9 p-[0.1rem] mt-9'
-      : 'w-[60px] h-[60px] p-[0.15rem]';
+    size === 'small' ? 'w-9 h-9 p-[0.1rem]' : 'w-[60px] h-[60px] p-[0.15rem]';
   return `${baseStyle} ${highlightStyle} ${sizeStyle}`;
 }
 
