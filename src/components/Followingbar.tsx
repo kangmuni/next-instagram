@@ -30,7 +30,7 @@ export default function Followingbar() {
   ];
 
   return (
-    <section className="flex justify-center p-4 overflow-x-auto">
+    <section className="flex justify-center p-4 overflow-x-auto relative z-0">
       {isLoading ? (
         <BeatLoader size={8} color="red" />
       ) : (

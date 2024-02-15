@@ -30,6 +30,7 @@ export default function RootLayout({
             </main>
           </div>
         </AuthContext>
+        <div id="portal" />
       </body>
     </html>
   );
