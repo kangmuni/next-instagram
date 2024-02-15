@@ -21,11 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={openSans.className}>
-      <body className="flex flex-col w-full max-w-screen-2xl mx-auto">
+      <body className="flex flex-col w-full max-w-screen-xl overflow-auto mx-auto">
         <AuthContext>
-          <div className="flex h-screen">
+          <div className="flex min-h-fit">
             <Sidebar />
-            <main className="w-full basis-11/12 m-9">
+            <main className="basis-11/12 m-9">
               <SWRConfigContext>{children}</SWRConfigContext>
             </main>
           </div>

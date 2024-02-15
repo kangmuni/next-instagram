@@ -12,7 +12,6 @@ import NewFillIcon from './ui/NewFillIcon';
 import LoginOrLogoutButton from './LoginOrLogoutButton';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
-import Avatar from './Avatar';
 
 export default function Sidebar() {
   const pathName = usePathname();
@@ -39,7 +38,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="p-9 pr-24 border-left border-solid border-r-2 border-slate-200 basis-1/12">
+    <div className="p-3 pt-9 pr-20 border-left border-solid border-r-2 border-slate-200 basis-1/12">
       <Link href="/" className="text-2xl font-semibold">
         Instagram
       </Link>

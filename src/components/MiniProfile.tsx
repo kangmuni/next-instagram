@@ -14,7 +14,7 @@ export default function MiniProfile({
   // clent component 사용방법 .. 이걸로 해도 되는건 아닌가?
 
   return (
-    <section>
+    <section className="h-full">
       <div className="ml-3 mb-9 flex items-center">
         {image && (
           <Link href={`/user/${username}`}>
