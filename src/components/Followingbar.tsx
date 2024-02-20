@@ -1,6 +1,6 @@
 'use client';
 
-import { DetailUser } from '@/model/user';
+import { HomeUser } from '@/model/user';
 import Link from 'next/link';
 import { BeatLoader } from 'react-spinners';
 
@@ -20,7 +20,7 @@ export default function Followingbar() {
   // 4. 여기에서(클라이언트 컴포넌트에서) followings의 정보를 UI에 보여줌
   // (image, username)
 
-  const { data, isLoading, error } = useSWR<DetailUser>('/api/me');
+  const { data, isLoading, error } = useSWR<HomeUser>('/api/me');
   //   const users = data?.following;
   const users = data?.following && [
     ...data?.following,
