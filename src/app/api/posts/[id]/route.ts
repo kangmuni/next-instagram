@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth';
 import { NextResponse, NextRequest } from 'next/server';
 
 import { getPost } from '@/service/post';
-import { authOptions } from '../../auth/[...nextauth]/route';
+import authOptions from '../../auth/[...nextauth]/option';
 
 type Context = {
   params: { id: string };
