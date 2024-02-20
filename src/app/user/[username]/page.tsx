@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import UserProfile from '@/components/UserProfile';
-=======
 import UserPosts from '@/components/UserPosts';
 import UserProfile from '@/components/UserProfile';
 
->>>>>>> 1488880 (사용자 프로필 서비스,컴포넌트,스타일링)
 import { getUserForProfile } from '@/service/user';
 import { notFound } from 'next/navigation';
 
@@ -18,14 +14,10 @@ export default async function UserPage({ params: { username } }: Props) {
     notFound();
   }
 
-<<<<<<< HEAD
-  return <UserProfile user={user} />;
-=======
   return (
     <section className="w-full">
       <UserProfile user={user} />
       <UserPosts user={user} />
     </section>
   );
->>>>>>> 1488880 (사용자 프로필 서비스,컴포넌트,스타일링)
 }

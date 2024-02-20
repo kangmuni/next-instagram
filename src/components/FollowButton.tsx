@@ -1,8 +1,4 @@
 'use client';
-<<<<<<< HEAD
-=======
-
->>>>>>> 1488880 (사용자 프로필 서비스,컴포넌트,스타일링)
 import { HomeUser, ProfileUser } from '@/model/user';
 import useSWR from 'swr';
 import Button from './ui/Button';
