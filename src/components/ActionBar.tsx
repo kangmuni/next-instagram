@@ -1,18 +1,41 @@
+'use client';
+
+import { useState } from 'react';
+
+import { parseDate } from '@/util/date';
+
+import ToggleButton from './ui/ToggleButton';
 import BookmarkIcon from './ui/BookmarkIcon';
 import HeartIcon from './ui/HeartIcon';
-import { parseDate } from '@/util/date';
+import HeartFillIcon from './ui/HeartFillIcon';
+import BookmarkFillIcon from './ui/BookmarkFillIcon';
+
 type Props = {
   likes: string[];
   username: string;
   text?: string;
   createdAt: string;
 };
+
 export default function ActionBar({ likes, username, text, createdAt }: Props) {
+  const [liked, setLiked] = useState(false);
+  const [bookmark, setBookmark] = useState(false);
+
   return (
     <>
       <div className="flex justify-between my-2 px-4">
-        <HeartIcon />
-        <BookmarkIcon />
+        <ToggleButton
+          toggled={liked}
+          onToggle={setLiked}
+          onIcon={<HeartIcon />}
+          offIcon={<HeartFillIcon />}
+        />
+        <ToggleButton
+          toggled={bookmark}
+          onToggle={setBookmark}
+          onIcon={<BookmarkIcon />}
+          offIcon={<BookmarkFillIcon />}
+        />
       </div>
       <div className="px-4 py-1">
         <p className="text-sm font-bold mb-2">{`${likes?.length ?? 0} ${
