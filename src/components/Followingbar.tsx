@@ -1,12 +1,12 @@
 'use client';
 
-import { HomeUser } from '@/model/user';
 import Link from 'next/link';
-import { BeatLoader } from 'react-spinners';
 
-import useSWR from 'swr';
+import { BeatLoader } from 'react-spinners';
 import Avatar from './Avatar';
 import ScrollableBar from './ui/ScrollableBar';
+
+import useMe from '@/hooks/me';
 
 export default function Followingbar() {
   // 클라이언트에서 백엔드에게 사용자의 정보를 보내줘야하나? 그럴필요는 없음!
@@ -20,13 +20,13 @@ export default function Followingbar() {
   // 4. 여기에서(클라이언트 컴포넌트에서) followings의 정보를 UI에 보여줌
   // (image, username)
 
-  const { data, isLoading, error } = useSWR<HomeUser>('/api/me');
+  const { user, isLoading, error } = useMe();
   //   const users = data?.following;
-  const users = data?.following && [
-    ...data?.following,
-    ...data?.following,
-    ...data?.following,
-    ...data?.following,
+  const users = user?.following && [
+    ...user?.following,
+    ...user?.following,
+    ...user?.following,
+    ...user?.following,
   ];
 
   return (
