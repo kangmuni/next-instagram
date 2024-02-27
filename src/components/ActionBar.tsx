@@ -10,31 +10,45 @@ import HeartIcon from './ui/HeartIcon';
 import HeartFillIcon from './ui/HeartFillIcon';
 import BookmarkFillIcon from './ui/BookmarkFillIcon';
 
+import { SimplePost } from '@/model/post';
+import { useSession } from 'next-auth/react';
+import { useSWRConfig } from 'swr';
+import usePosts from '@/hooks/posts';
+
 type Props = {
-  likes: string[];
-  username: string;
-  text?: string;
-  createdAt: string;
+  post: SimplePost;
 };
 
-export default function ActionBar({ likes, username, text, createdAt }: Props) {
-  const [liked, setLiked] = useState(false);
+export default function ActionBar({ post }: Props) {
+  const { id, likes, username, text, createdAt } = post;
+  const { data: session } = useSession();
+  const user = session?.user;
+
+  const liked = user ? likes.includes(user.username) : false; // 초기값
+
   const [bookmark, setBookmark] = useState(false);
+  const { setLike } = usePosts();
+
+  const handleLike = (like: boolean) => {
+    if (user) {
+      setLike(post, user.username, like);
+    }
+  };
 
   return (
     <>
       <div className="flex justify-between my-2 px-4">
         <ToggleButton
           toggled={liked}
-          onToggle={setLiked}
-          onIcon={<HeartIcon />}
-          offIcon={<HeartFillIcon />}
+          onToggle={handleLike}
+          onIcon={<HeartFillIcon />}
+          offIcon={<HeartIcon />}
         />
         <ToggleButton
           toggled={bookmark}
           onToggle={setBookmark}
-          onIcon={<BookmarkIcon />}
-          offIcon={<BookmarkFillIcon />}
+          onIcon={<BookmarkFillIcon />}
+          offIcon={<BookmarkIcon />}
         />
       </div>
       <div className="px-4 py-1">

@@ -8,24 +8,21 @@ const simplePostProjection = `
     "image": photo,
     "likes": likes[]->username,
     "text": comments[0].comment,
-    "comment": count(comments),
+    "comments": count(comments),
     "id":_id,
     "createdAt":_createdAt
 `;
 
-//post.author.username -> post.username
 export async function getFollowingPostsOf(username: string) {
   return client
     .fetch(
-      `
-    *[_type == "post" && author->username == "${username}"
-     || author._ref in *[_type == "user" && username == "${username}"].following[]._ref]
-    | order(_createdAt desc){${simplePostProjection}}
-     `
-    ) //
-    .then((posts) =>
-      posts.map((post: SimplePost) => ({ ...post, image: urlFor(post.image) }))
-    );
+      `*[_type =="post" && author->username == "${username}"
+          || author._ref in *[_type == "user" && username == "${username}"].following[]._ref]
+          | order(_createdAt desc){
+          ${simplePostProjection}
+        }`
+    )
+    .then(mapPosts);
 }
 
 export async function getPost(id: string) {
@@ -55,7 +52,6 @@ export async function getPostsOf(username: string) {
     )
     .then(mapPosts);
 }
-
 export async function getLikedPostsOf(username: string) {
   return client
     .fetch(
@@ -66,7 +62,6 @@ export async function getLikedPostsOf(username: string) {
     )
     .then(mapPosts);
 }
-
 export async function getSavedPostsOf(username: string) {
   return client
     .fetch(
@@ -77,10 +72,17 @@ export async function getSavedPostsOf(username: string) {
     )
     .then(mapPosts);
 }
+function mapPosts(posts: SimplePost[]) {
+  return posts.map((post: SimplePost) => ({
+    ...post,
+    likes: post.likes ?? [],
+    image: urlFor(post.image),
+  }));
+}
 
 export async function likePost(postId: string, userId: string) {
   return client
-    .patch(postId)
+    .patch(postId) //
     .setIfMissing({ likes: [] })
     .append('likes', [
       {
@@ -96,11 +98,4 @@ export async function dislikePost(postId: string, userId: string) {
     .patch(postId)
     .unset([`likes[_ref=="${userId}"]`])
     .commit();
-}
-
-function mapPosts(posts: SimplePost[]) {
-  return posts.map((post: SimplePost) => ({
-    ...post,
-    image: urlFor(post.image),
-  }));
 }
