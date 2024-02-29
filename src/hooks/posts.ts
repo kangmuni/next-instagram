@@ -46,16 +46,14 @@ export default function usePosts() {
   );
 
   const postComment = useCallback(
-    (post: SimplePost, username: string, like: boolean) => {
+    (post: SimplePost, comment: Comment) => {
       const newPost = {
         ...post,
-        likes: like
-          ? [...post.likes, username]
-          : post.likes.filter((item) => item !== username),
+        comments: post.comments + 1,
       };
       const newPosts = posts?.map((p) => (p.id === post.id ? newPost : p));
 
-      return mutate(updateLike(post.id, like), {
+      return mutate(addComment(post.id, comment.comment), {
         optimisticData: newPosts,
         populateCache: false,
         revalidate: false,
