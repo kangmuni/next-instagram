@@ -1,7 +1,7 @@
 'use client';
 import { AuthUser } from '@/model/user';
 
-import { ChangeEvent, DragEvent, useRef, useState } from 'react';
+import { ChangeEvent, DragEvent, FormEvent, useRef, useState } from 'react';
 
 import PostUserAvatar from './PostUserAvatar';
 import Button from './ui/Button';
