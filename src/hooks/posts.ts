@@ -3,6 +3,8 @@ import useSWR, { useSWRConfig } from 'swr';
 import { Comment, SimplePost } from '@/model/post';
 import { useCallback } from 'react';
 
+import { useCacheKeys } from '@/context/CacheKeysContext';
+
 async function updateLike(id: string, like: boolean) {
   return fetch('/api/likes', {
     method: 'PUT',
@@ -18,12 +20,13 @@ async function addComment(id: string, comment: string) {
 }
 
 export default function usePosts() {
+  const cacheKeys = useCacheKeys();
   const {
     data: posts,
     isLoading,
     error,
     mutate,
-  } = useSWR<SimplePost[]>('/api/posts');
+  } = useSWR<SimplePost[]>(cacheKeys.postsKey); // context 사용 후 변경 코드
 
   const setLike = useCallback(
     (post: SimplePost, username: string, like: boolean) => {

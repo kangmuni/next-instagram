@@ -16,7 +16,7 @@ export default async function HomePage() {
 
   return (
     <main className="w-full flex flex-col lg:flex-row max-w-[600px]">
-      <article className="w-full basis-4/5">
+      <article className="w-full basis-4/5 lg:min-w-[600px]">
         <Followingbar />
         <PostList />
       </article>
