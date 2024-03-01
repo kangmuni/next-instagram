@@ -21,7 +21,7 @@ export default function UserSearch() {
     e.preventDefault();
   };
   return (
-    <section className="w-full max-w-2xl my-4 flex flex-col items-center">
+    <section className="w-full max-w-2xl my-4 flex flex-col items-center m-9">
       <form className="w-full mb-4" onSubmit={onSubmit}>
         <input
           className="w-full text-sm p-3 outline-none bg-gray-200 rounded-lg"

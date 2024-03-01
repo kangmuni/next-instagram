@@ -8,7 +8,7 @@ export default function Button({ disabled, text, onClick }: Props) {
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`w-24 h-8 order-none rounded-lg text-white font-bold leading-4 text-sm ${
+      className={`py-2 px-8 border-none rounded-lg text-white font-bold leading-4 text-sm ${
         text === '팔로잉' ? 'bg-emerald-400' : 'bg-sky-400 '
       }`}
     >
